@@ -31,6 +31,9 @@ jobs:
         pip3 install --user buildozer cython==0.29.36
         echo "$HOME/.local/bin" >> $GITHUB_PATH
 
+    - name: Install Android NDK 23
+      run: |
+        yes | sdkmanager --install "ndk;23.2.8568313"
     - name: Build APK
       run: |
        export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/23.2.8568313
