@@ -17,6 +17,11 @@ source.include_exts = py,png,jpg,kv,atlas
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
+android.gradle_dependencies =
+android.enable_androidx = True
+android.gradle_daemon = False
+android.gradle_clean = False
+android.gradle_options = -Xmx4096m
 
 # (list) Source files to exclude (let empty to not exclude anything)
 #source.exclude_exts = spec
