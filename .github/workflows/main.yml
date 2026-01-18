@@ -7,12 +7,30 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install system dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          python3-pip python3-setuptools python3-wheel \
+          openjdk-17-jdk \
+          zip unzip git \
+          build-essential \
+          libffi-dev libssl-dev \
+          libsqlite3-dev \
+          libbz2-dev \
+          libreadline-dev \
+          libncurses5-dev
+
+    - name: Install Buildozer
+      run: |
+        pip3 install --user buildozer cython==0.29.36
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
     - name: Build APK
-      uses: digreatbrian/buildozer-action@v2
-      with:
-        command: buildozer android debug
+      run: |
+        buildozer android debug
