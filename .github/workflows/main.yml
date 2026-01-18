@@ -34,11 +34,14 @@ jobs:
     - name: Clean buildozer
       run: |
         rm -rf .buildozer
-    - name: Install Android NDK 23
+
+    - name: Fix Gradle
       run: |
-        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;23.2.8568313"
+        mkdir -p ~/.gradle
+        echo "org.gradle.jvmargs=-Xmx3g" >> ~/.gradle/gradle.properties
+        
     - name: Build APK
       run: |
-       export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/23.2.8568313
-        export ANDROID_NDK=$ANDROID_NDK_HOME
+       export ANDROIDAPI=30
+       export ANDROIDMINAPI=21
         buildozer -v android debug
