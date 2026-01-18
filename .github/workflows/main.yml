@@ -30,9 +30,9 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Build APK
-        env:
-          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
         run: |
           export ANDROIDAPI=30
           export ANDROIDMINAPI=21
-          buildozer -v android debug --no-gradle-clean
+          export BUILDOZER_ANDROID_GRADLE_CLEAN=0
+          export BUILDOZER_ANDROID_GRADLE_DAEMON=0
+          buildozer -v android debug
