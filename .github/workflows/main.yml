@@ -42,6 +42,7 @@ jobs:
 
     - name: Fix Gradle
       run: |
+        mkdir -p ~/.gradle
         echo "org.gradle.java.home=$JAVA_HOME" >> ~/.gradle/gradle.properties
         echo "org.gradle.jvmargs=-Xmx3g" >> ~/.gradle/gradle.properties
         
