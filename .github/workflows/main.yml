@@ -33,7 +33,7 @@ jobs:
 
     - name: Install Android NDK 23
       run: |
-        yes | sdkmanager --install "ndk;23.2.8568313"
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;23.2.8568313"
     - name: Build APK
       run: |
        export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/23.2.8568313
