@@ -33,4 +33,6 @@ jobs:
 
     - name: Build APK
       run: |
+       export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/23.2.8568313
+        export ANDROID_NDK=$ANDROID_NDK_HOME
         buildozer android debug
