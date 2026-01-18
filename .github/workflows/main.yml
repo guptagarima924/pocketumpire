@@ -50,4 +50,4 @@ jobs:
       run: |
        export ANDROIDAPI=30
        export ANDROIDMINAPI=21
-        buildozer -v android debug
+        buildozer -v android debug --no-clean-build
