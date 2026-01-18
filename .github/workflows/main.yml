@@ -45,9 +45,16 @@ jobs:
         mkdir -p ~/.gradle
         echo "org.gradle.java.home=$JAVA_HOME" >> ~/.gradle/gradle.properties
         echo "org.gradle.jvmargs=-Xmx3g" >> ~/.gradle/gradle.properties
+
+    - name: Force Java 11 only
+      run: |
+        sudo rm -rf /usr/lib/jvm/temurin-17*
+        sudo rm -rf /usr/lib/jvm/temurin-21*
+        sudo rm -rf /usr/lib/jvm/temurin-25*
+        export JAVA_HOME=/usr/lib/jvm/temurin-11-jdk-amd64
+        export PATH=$JAVA_HOME/bin:$PATH
+        java -version
         
     - name: Build APK
       run: |
-       export ANDROIDAPI=30
-       export ANDROIDMINAPI=21
         buildozer -v android debug --no-clean-build
