@@ -24,6 +24,16 @@ jobs:
             libreadline-dev \
             libncurses5-dev
 
+      - name: Force Java 11 (HARD)
+        run: |  
+          sudo rm -rf /usr/lib/jvm/temurin-17*
+          sudo rm -rf /usr/lib/jvm/temurin-21*
+          sudo rm -rf /usr/lib/jvm/temurin-25*
+          export JAVA_HOME=/usr/lib/jvm/temurin-11-jdk-amd64
+          echo "JAVA_HOME=usr/lib/jvm/temurin-11-jdk-amd64" >> $GITHUB_ENV
+          echo "/usr/lib/jvm/temurin-11-jdk-amd64/bin" >> $GITHUB_PATH
+          java -version
+
       - name: Install Buildozer
         run: |
           pip3 install --user buildozer cython==0.29.36
